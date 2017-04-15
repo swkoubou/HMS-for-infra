@@ -1,0 +1,18 @@
+version: '2'
+services:
+   db:
+     image: mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: fitbit
+       MYSQL_DATABASE: fitbit
+       MYSQL_USER: fitbit
+       MYSQL_PASSWORD: fitbit 
+
+   web:
+     build: ./nginx
+     links:
+       - db
+     ports:
+       - "80:80"
+     volumes:
+       - /home/kanna/HMS-for-API/nginx/html/ga-back-end:/usr/share/nginx/html
