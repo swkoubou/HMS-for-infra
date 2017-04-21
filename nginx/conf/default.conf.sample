@@ -1,5 +1,5 @@
 server {
-    server_name	hms.swkoubou.com;
+    server_name	'your_server_domain'; #ドメインまたはIP
     listen	80;
     #charset koi8-r;
     #access_log  /var/log/nginx/log/host.access.log  main;
@@ -42,7 +42,7 @@ server {
     #}
 }
 server {
-    server_name	apihms.swkoubou.com;
+    server_name	'your_server_domain'; #ドメインまたはIP
     listen	80;
     #charset koi8-r;
     #access_log  /var/log/nginx/log/host.access.log  main;
@@ -51,7 +51,7 @@ server {
 	add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods "POST, GET, PUT, DELETE";
         add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
-	root	/usr/share/nginx/html/HMS-for-API/;
+	root	/usr/share/nginx/html/api/;
 	include uwsgi_params;
         uwsgi_pass 127.0.0.1:3031;
     }

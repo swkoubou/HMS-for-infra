@@ -15,4 +15,4 @@ services:
      ports:
        - "80:80"
      volumes:
-       - /home/kanna/HMS-for-API/nginx/html/ga-back-end:/usr/share/nginx/html
+       - /home/kanna/HMS-for-infra/nginx/html/ga-back-end:/usr/share/nginx/html
