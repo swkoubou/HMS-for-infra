@@ -12,7 +12,7 @@ APIリポジトリと静的サイトのリポジトリのclone
 ```bash
 $ cd nginx/html/ga-back-end/
 $ git clone git@github.com:swkoubou/HMS-for-API.git
-$ git clone "静的サイトのリポジトリURL"
+$ git clone git@github.com:swkoubou/HMS-for-static.git
 ```
 
 nginxのコンフィグファイルの設定
