@@ -1,18 +1,39 @@
 version: '2'
 services:
-   db:
-     image: mysql
-     environment:
-       MYSQL_ROOT_PASSWORD: fitbit
-       MYSQL_DATABASE: fitbit
-       MYSQL_USER: fitbit
-       MYSQL_PASSWORD: fitbit 
-
-   web:
-     build: ./nginx
-     links:
-       - db
+   proxy:
+     build: ./proxy
      ports:
        - "80:80"
+       - "443:443"
      volumes:
-       - /home/kanna/HMS-for-infra/nginx/html/ga-back-end:/usr/share/nginx/html
+       - /home/yudai/workspace/proxy/proxy/conf:/etc/nginx/conf.d
+     networks:
+       hms_net:
+         ipv4_address: "172.16.238.10"
+
+   asset:
+     build: ./asset
+     networks:
+       hms_net:
+         ipv4_address: "172.16.238.11"
+     volumes:
+       - /home/yudai/workspace/proxy/asset/example:/usr/share/nginx/html/example
+
+   api:
+     build: ./api
+     networks:
+       hms_net:
+         ipv4_address: "172.16.238.12"
+     volumes:
+       - /home/yudai/workspace/proxy/api/HMS-for-API:/app
+
+networks:
+   hms_net:
+     driver: bridge
+     driver_opts:
+       com.docker.network.enable_ipv6: "false"
+     ipam:
+       driver: default
+       config:
+         - subnet: "172.16.238.0/24"
+           gateway: "172.16.238.1"
