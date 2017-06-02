@@ -36,6 +36,7 @@ SQLALCHEMY_DATABASE_URI=''
 ```bash
 $ docker-compose up -d --build
 ```
+※apiコンテナにログインして`service nginx start`
 
 ## 環境
 docker,docker-composeがインストールされていること
