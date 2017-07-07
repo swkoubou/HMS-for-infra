@@ -1,15 +1,9 @@
-FROM nginx
+FROM python:3.5
 
-MAINTAINER yudai
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-RUN apt-get update && \
-	apt-get install -y vim && \
-	apt-get install -y python3 && \
-	apt-get install -y python3-dev && \
-	apt-get install -y python3-pip
-
-ADD ["conf/default.conf","/etc/nginx/conf.d/"]
-ADD ["run.sh","/usr/local/bin/"]
-
-CMD ["/usr/local/bin/run.sh", "&&", "service nginx start"]
-
+RUN apt-get update
+RUN apt-get install -y mysql-client vim
+ADD ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt

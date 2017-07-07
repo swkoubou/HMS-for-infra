@@ -1,5 +1,15 @@
 version: '2'
 services:
+   mysql:
+     restart: always
+     hostname: mysql
+     build: ./mysql
+     volumes:
+       - "$PWD/data:/var/lib/mysql"
+     networks:
+       hms_net:
+         ipv4_address: "172.16.238.13"
+
    proxy:
      build: ./proxy
      ports:
@@ -7,6 +17,7 @@ services:
        - "443:443"
      volumes:
        - "$PWD/proxy/conf:/etc/nginx/conf.d"
+     restart: always
      networks:
        hms_net:
          ipv4_address: "172.16.238.10"
@@ -18,14 +29,21 @@ services:
          ipv4_address: "172.16.238.11"
      volumes:
        - "$PWD/asset/example:/usr/share/nginx/html/example"
+     restart: always
 
    api:
      build: ./api
      networks:
        hms_net:
          ipv4_address: "172.16.238.12"
+     depends_on:
+       - mysql
      volumes:
-       - "$PWD/api/HMS-for-API:/app"
+       - "$PWD/api/Django_first_project:/usr/src/app"
+     restart: always
+     links:
+       - mysql
+     command: ./manage.py runserver 0.0.0.0:8000
 
 networks:
    hms_net:
