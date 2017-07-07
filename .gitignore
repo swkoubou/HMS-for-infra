@@ -1,2 +1,4 @@
 api/HMS-for-API
 !.gitkeep
+data/
+db-init/
