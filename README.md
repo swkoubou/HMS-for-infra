@@ -12,7 +12,7 @@ $ cd HMS-for-infra/
 APIリポジトリのclone(※2017/05/27日現在asset用のリポジトリはテスト用のディレクトリを使用しています)
 ```bash
 $ cd api
-$ git clone git@github.com:swkoubou/HMS-for-API.git
+$ git clone git@github.com:swkoubou/gestion-api.git
 ```
 
 APIサーバの設定
