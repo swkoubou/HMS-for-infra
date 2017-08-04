@@ -1,5 +1,4 @@
-api/gestion-api
-api/HMS-for-API
+!api/gestion-api/*
 !.gitkeep
 data/
 db-init/
