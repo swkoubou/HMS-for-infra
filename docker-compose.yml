@@ -27,7 +27,7 @@ services:
      depends_on:
        - mysql
      volumes:
-       - "$PWD/api/Django_first_project:/usr/src/app"
+       - "$PWD/api/gestion-api:/usr/src/app"
      restart: always
      links:
        - mysql
