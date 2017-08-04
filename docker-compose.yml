@@ -31,7 +31,7 @@ services:
      restart: always
      links:
        - mysql
-     command: ./manage.py runserver 0.0.0.0:8000
+     command: ./flask run
 
 networks:
    hms_net:
