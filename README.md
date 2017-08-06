@@ -9,34 +9,32 @@ $ cd HMS-for-infra/
 ```
 **これより下の作業はプロジェクトのルートで行います**
 
-APIリポジトリのclone(※2017/05/27日現在asset用のリポジトリはテスト用のディレクトリを使用しています)
+APIリポジトリとassetリポジトリのclone(※2017/05/27日現在asset用のリポジトリはテスト用のディレクトリを使用しています)
 ```bash
 $ cd api
 $ git clone git@github.com:swkoubou/gestion-api.git
+$ cd ../asset
+$ git clone git@github.com:swkoubou/gestion.git
 ```
 
 APIサーバの設定
 ```bash
-$ cd api/HMS-for-API
-$ mv app.cfg.sample app.cfg
-$ vim app.cfg
+$ cd api/gestion-api
+$ cp gestion/config/systemc.cnf.sample gestion/config/systemc.cnf
+$ vim gestion/config/systemc.cnf
 ```
 ```python
-DEBUG=True
-TESTING=False
-HOST='localhost'
-PORT=5000
-SQLALCHEMY_DATABASE_URI=''
+username=<docker-compose.ymlに記載されているMySQLコンテナのユーザー>
+password=<docker-compose.ymlに記載されているMySQコンテナのパスワード>
+host=<docker-compose.ymlに記載されているMySQLコンテナ名orホスト名>
+dbname=gestion
 ```
-`HOST`を環境に応じて変更してください,`SQLALCHEMY_DATABASE_URI`は`sqlite:////'適当なpath'/test.db`
-> 例:local環境) `HOST='localhost'`,`SQLALCHEMY_DATABASE_URI='sqlite:////tmp/test.db'`  
-> 例:グローバル環境) `HOST='hoge.com'`,`SQLALCHEMY_DATABASE_URI='sqlite:////tmp/test.db'`
 
 リポジトリのルートでコンテナの起動
 ```bash
-$ docker-compose up -d --build
+$ docker-compose up -d
 ```
-※apiコンテナにログインして`service nginx start`
 
 ## 環境
-docker,docker-composeがインストールされていること
+docker         17.06.0~ce
+docker-compose 1.14.0
