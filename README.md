@@ -36,6 +36,5 @@ $ docker-compose up -d
 ```
 
 ## 環境
-docker         17.06.0~ce
-
+docker         17.06.0~ce<br>
 docker-compose 1.14.0
