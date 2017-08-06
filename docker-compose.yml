@@ -27,11 +27,11 @@ services:
      depends_on:
        - mysql
      volumes:
-       - "$PWD/api/gestion-api/gestion:/usr/src/app"
+       - "$PWD/api/gestion-api:/usr/src/app"
      restart: always
      links:
        - mysql
-     command: flask run
+     command: flask run -h 0.0.0.0
 
 networks:
    hms_net:
