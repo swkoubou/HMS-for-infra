@@ -24,15 +24,22 @@ $ cp gestion/config/systemc.cnf.sample gestion/config/systemc.cnf
 $ vim gestion/config/systemc.cnf
 ```
 ```python
-username=<docker-compose.ymlに記載されているMySQLコンテナのユーザー>
+username=root
 password=<docker-compose.ymlに記載されているMySQコンテナのパスワード>
-host=<docker-compose.ymlに記載されているMySQLコンテナ名orホスト名>
+host=mysql
 dbname=gestion
 ```
 
 リポジトリのルートでコンテナの起動
 ```bash
+$ docker-compose build --no-cache
 $ docker-compose up -d
+```
+APIコンテナから初期テーブルを作成するコマンドを実行する
+```bash
+$ docker exec -it hmsforinfra_api_1 /bin/bash # APIコンテナの/usr/src/appディレクトリにログインする
+/usr/src/app# export FLASK_APP=gestion/__init__.py #flask commandの環境変数設定
+/usr/src/app# flask initdb # 初期テーブルの作成
 ```
 
 ## 環境
