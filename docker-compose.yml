@@ -17,8 +17,9 @@ services:
        hms_net:
          ipv4_address: "172.16.238.11"
      volumes:
-       - "$PWD/asset/gestion:/usr/share/nginx/html/example"
+       - "$PWD/asset/gestion:/usr/src/app"
      restart: always
+     command: ng serve --host 0.0.0.0
 
    api:
      build: ./api
