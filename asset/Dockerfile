@@ -1,10 +1,11 @@
-FROM suchja/angular-cli-docker
+FROM nginx
 
 MAINTAINER yudai
 
-ENV HOME=/usr/src/app
-RUN mkdir $HOME
-WORKDIR $HOME
+RUN apt-get update
+RUN apt-get install -y vim
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-EXPOSE 4200
-EXPOSE 49153
+ADD conf/default.conf /etc/nginx/conf.d/
+
+CMD ["nginx"]
