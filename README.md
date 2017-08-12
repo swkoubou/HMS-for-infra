@@ -41,6 +41,14 @@ $ docker exec -it hmsforinfra_api_1 /bin/bash # APIコンテナの/usr/src/app�
 /usr/src/app# export FLASK_APP=gestion/__init__.py #flask commandの環境変数設定
 /usr/src/app# flask initdb # 初期テーブルの作成
 ```
+stres_clac_batch.pyを一日一回回すcronを回す
+APIコンテナにdocker exec する
+```bash
+$ docker exec -it hmsforinfra_api_1 /bin/bash
+/usr/src/app# crontab -e # cronの登録を行う
+
+0 0 * * * python /usr/src/app/stres_calc_batch.py
+```
 
 ## 環境
 docker         17.06.0~ce<br>
